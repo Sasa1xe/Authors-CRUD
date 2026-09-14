@@ -27,26 +27,24 @@ app.get("/authors", async (req, req) => {
   const authors = await req.db.getAll("authors");
 
   const filteredAuthors = authors.filter((author) =>
-    author.name.toLowerCase().startsWith(search.toLowerCase())
+    author.name.toLowerCase().startsWith(search.toLowerCase()),
   );
 
   return res.json({
     data: filteredAuthors,
   });
 });
-//get all 
+//get all
 app.get("/authors", async (req, res) => {
   const authors = await db.getAll("authors");
 
   return res.json({
     data: authors,
   });
-
-
 });
 // get one author
 app.get("/authors/:author_id", async (req, res) => {
-  const author = await db.getById("authors" , req.params.author_id);
+  const author = await db.getById("authors", req.params.author_id);
 
   if (!author) {
     return res.status(404).json({
@@ -59,7 +57,6 @@ app.get("/authors/:author_id", async (req, res) => {
   });
 });
 
-
 // create author
 app.post("/authors", async (req, res) => {
   const authorData = req.body;
@@ -70,7 +67,6 @@ app.post("/authors", async (req, res) => {
     message: "author created successfully",
   });
 });
-
 
 // update author
 app.patch("/authors/:author_id", async (req, res) => {
@@ -94,7 +90,6 @@ app.patch("/authors/:author_id", async (req, res) => {
     data: newAuthor,
   });
 });
-
 
 // delete author
 app.delete("/authors/:author_id", async (req, res) => {
